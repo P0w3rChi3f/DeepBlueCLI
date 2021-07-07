@@ -59,13 +59,13 @@ def CheckCommand(time, log, eventid, cli):
         string+=CheckRegex(regexes,decoded)
     string += CheckObfu(cli,minpercent,minlength) 
     if(string):
-        print "Date: %s\nLog: %s\nEventID: %s" % (time,log,eventid)
-        print "Results:\n%s\n" % (string.rstrip())
-        print "Command:  %s\n" % (cli)
+        print("Date: %s\nLog: %s\nEventID: %s" % (time,log,eventid))
+        print("Results:\n%s\n" % (string.rstrip()))
+        print("Command:  %s\n" % (cli))
     if(decoded):
-        print "Decoded: %s" % (decoded)
+        print("Decoded: %s" % (decoded))
     if(string):
-        print "\n"
+        print("\n")
 
 filename=""
 regexfile="regexes.txt"
@@ -80,18 +80,18 @@ if len(sys.argv)==2:
                     if not row[0].startswith('#'):
                         regexes.append(row)
         else:
-            print "Error: cannot open "+regexfile+"\n" 
+            print("Error: cannot open "+regexfile+"\n" )
     else:
-        print "Error: no such file: %s\n" % (sys.argv)
+        print("Error: no such file: %s\n" % (sys.argv))
 else:
-    print "Error: filename required as an argument\n"
+    print("Error: filename required as an argument\n")
 
 if (filename and regexes):
     process=""
     try:
         process = Popen(['evtxexport', filename], stdout=PIPE, stderr=PIPE)
     except:
-        print 'Can\'t find libevtx. Check the path and verify it is installed. See: https://github.com/libyal/libevtx'
+        print('Can\'t find libevtx. Check the path and verify it is installed. See: https://github.com/libyal/libevtx')
 
     if (process):
         time=""

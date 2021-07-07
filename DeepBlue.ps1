@@ -73,7 +73,7 @@ function Main {
     #
     # Get the events:
     try{
-        $events = iex "Get-WinEvent $filter -ErrorAction Stop"
+        $events = Invoke-Expression "Get-WinEvent $filter -ErrorAction Stop"
     }
     catch {
         Write-Host "Get-WinEvent $filter -ErrorAction Stop"

@@ -1,1 +1,1 @@
-Placeholder for upcoming Virustotal submission script via Sysmon logs/hashes.
+# Placeholder for upcoming Virustotal submission script via Sysmon logs/hashes  

@@ -2,29 +2,31 @@
 
 Detective whitelisting using Sysmon event logs.
 
-Parses the Sysmon event logs, grabbing the SHA256 hashes from process creation (event 1), driver load (event 6, sys), and image load (event 7, DLL) events. 
+Parses the Sysmon event logs, grabbing the SHA256 hashes from process creation (event 1), driver load (event 6, sys), and image load (event 7, DLL) events.  
 
 ## VirusTotal and Whitelisting setup
 
 Setting up VirusTotal hash submissions and whitelisting:
 
-The hash checker requires Post-VirusTotal:
+The hash checker requires [Post-VirusTotal:](https://github.com/darkoperator/Posh-VirusTotal)
 
- - https://github.com/darkoperator/Posh-VirusTotal
+- "https://github.com/darkoperator/Posh-VirusTotal"
 
-It also requires a VirusTotal API key: 
+It also requires a [VirusTotal API key:](https://www.virustotal.com/en/documentation/public-api/)  
 
- - https://www.virustotal.com/en/documentation/public-api/
+- "https://www.virustotal.com/en/documentation/public-api/"
 
 Then configure your VirusTotal API key:
+
 ```powershell
 set-VTAPIKey -APIKey <API Key>
 ```
+
 The script assumes a personal API key, and waits 15 seconds between submissions.
 
 ## Sysmon setup
 
-Sysmon is required: https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon
+[Sysmon](https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon) is required:  
 
 Must log the SHA256 hash, DeepWhite will ignore the others.
 
@@ -53,17 +55,19 @@ This minimal Sysmon 6.0 config will log the proper events/hashes. Note that imag
   </EventFiltering>
 </Sysmon>
 ```
+
 These are the events used by DeepBlueCLI and DeepWhite.
 
-You can go *much* further than this with Sysmon. The Sysinternals Sysmon page has a good basic configuration: https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon
+You can go *much* further than this with Sysmon. The [Sysinternals Sysmon](https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon) page has a good basic configuration:  
 
-Also see @swiftonsecurity's awesome Sysmon config here: https://github.com/SwiftOnSecurity/sysmon-config
+Also see [@swiftonsecurity's awesome Sysmon config](https://github.com/SwiftOnSecurity/sysmon-config) here:  
 
 ## Generating a Whitelist
 
 Generate a custom whitelist on Windows (note: this is optional):
 
-```
+```PowerShell
 PS C:\> Get-ChildItem c:\windows\system32 -Include '*.exe','*.dll','*.sys','*.com' -Recurse | Get-FileHash| Export-Csv -Path whitelist.csv
 ```
+
 Note: this will generate (harmless) 'PermissionDenied' warnings for locked files, etc. They may be ignored.

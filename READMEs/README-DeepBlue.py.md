@@ -6,17 +6,17 @@ Current version: alpha. It supports command line parsing for Security event log 
 
 ## libevtx
 
-Requires libevtx:  https://github.com/libyal/libevtx
+Requires [libevtx:](https://github.com/libyal/libevtx)
 
 ## Other evtx frameworks
 
-Note that I tested a few Unix/Linux/Python evtx frameworks. 
+Note that I tested a few Unix/Linux/Python evtx frameworks.  
 
-This is quite popular: https://github.com/williballenthin/python-evtx
+This is quite popular: [Python-evtx](https://github.com/williballenthin/python-evtx)
 
 I ran into trouble with *some* .evtx files, where it would crash with this error:
 
-```
+```Error
 UnicodeDecodeError: 'utf16' codec can't decode bytes in position 0-1: illegal UTF-16 surrogate
 ```
 
